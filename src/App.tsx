@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {TransactionDto} from "./models/transactionDto";
 import {Chart} from "react-google-charts";
-import Header from "./header";
+import Header from "./header/header";
 import Footer from "./footer";
 
 const options = {
@@ -51,7 +51,7 @@ function App() {
         return (
             <>
                 <Header dates={{startDate: startDate, endDate: endDate}} handleStartDateSelect={setStartDate} handleEndDateSelect={setEndDate}/>
-                <div>Grocery shop</div>
+                <br/>
                 <Chart
                     chartType="Line"
                     width="100%"
@@ -59,6 +59,7 @@ function App() {
                     data={items}
                     options={options}
                 />
+                <br/>
                 <Footer/>
             </>
         )
