@@ -3,6 +3,7 @@ import './App.css';
 import {TransactionDto} from "./models/transactionDto";
 import {Chart} from "react-google-charts";
 import Header from "./header";
+import Footer from "./footer";
 
 const options = {
     title: "Company Performance",
@@ -43,7 +44,6 @@ function App() {
     }, [startDate, endDate])
 
     if (error) {
-        console.error(error)
         return <div>We're sorry, but something went wrong. Try again later.</div>;
     } else if (!isLoaded) {
         return <div>Loading...</div>;
@@ -59,6 +59,7 @@ function App() {
                     data={items}
                     options={options}
                 />
+                <Footer/>
             </>
         )
     }
