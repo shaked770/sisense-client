@@ -11,11 +11,11 @@ const options = {
     legend: {position: "bottom"},
     hAxis: {
         format: "dd-MM-yyyy",
-        // ticks: [
-        //     new Date("2021-06-01T22:00:00.000Z"),
-        //     new Date("2021-09-31T22:00:00.000Z"),
-        //     new Date("2021-12-31T22:00:00.000Z")
-        // ]
+    },
+    series: {
+        0: { color: 'red' },
+        1: { color: 'blue' },
+        2: { color: 'green' },
     }
 };
 
@@ -31,7 +31,7 @@ function App() {
             .then(res => res.json())
             .then(
                 (result: TransactionDto[]) => {
-                    const data = [['day', 'income', 'outcome', 'clear'], ...result.map(res => ([new Date(res.date), res.income, res.outcome, res.clear]))]
+                    const data = [['', 'income', 'outcome', 'clear'], ...result.map(res => ([new Date(res.date), res.income, res.outcome, res.clear]))]
                     setItems(data);
                     setIsLoaded(true);
                 },
