@@ -1,5 +1,6 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import './header.css';
 
 export default function Header({
                                    dates,
@@ -7,9 +8,10 @@ export default function Header({
                                    handleEndDateSelect
                                }: { dates: { startDate: Date, endDate: Date }, handleStartDateSelect: (newDate: Date) => void; handleEndDateSelect: (newDate: Date) => void }) {
     return (
-        <div>
+        <div className={"header"}>
             <h4>Please select range of dates:</h4>
             <table>
+                <tbody>
                 <tr>
                     <th>
                         from:
@@ -32,6 +34,7 @@ export default function Header({
                         />
                     </td>
                 </tr>
+                </tbody>
             </table>
         </div>)
 }

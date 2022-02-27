@@ -3,7 +3,7 @@ import './App.css';
 import {TransactionDto} from "./models/transactionDto";
 import {Chart} from "react-google-charts";
 import Header from "./header/header";
-import Footer from "./footer";
+import Footer from "./footer/footer";
 
 const options = {
     title: "Company Performance",
@@ -32,6 +32,7 @@ function App() {
             .then(
                 (result: TransactionDto[]) => {
                     const data = [['', 'income', 'outcome', 'clear'], ...result.map(res => ([new Date(res.date), res.income, res.outcome, res.clear]))]
+                    console.log('now got data')
                     setItems(data);
                     setIsLoaded(true);
                 },
@@ -44,12 +45,12 @@ function App() {
     }, [startDate, endDate])
 
     if (error) {
-        return <div>We're sorry, but something went wrong. Try again later.</div>;
+        return <div className={"error"}>We're sorry, but something went wrong. Try again later.</div>;
     } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return <div className={"loader"}><h1>Loading...</h1></div>;
     } else {
         return (
-            <>
+            <div className={"content"}>
                 <Header dates={{startDate: startDate, endDate: endDate}} handleStartDateSelect={setStartDate} handleEndDateSelect={setEndDate}/>
                 <br/>
                 <Chart
@@ -58,10 +59,11 @@ function App() {
                     height="400px"
                     data={items}
                     options={options}
+                    onLoad={(_) => {console.log('now onLoad')}}
                 />
                 <br/>
                 <Footer/>
-            </>
+            </div>
         )
     }
 }

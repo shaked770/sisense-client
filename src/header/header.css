@@ -1,3 +1,7 @@
 .Header .react-datepicker-wrapper {
     width: fit-content;
 }
+
+.header {
+    margin-left: 2%;
+}
